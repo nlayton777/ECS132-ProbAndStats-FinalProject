@@ -1,0 +1,9 @@
+rm *.aux
+rm *.log
+rm *.pdf
+rm *.synctex.gz
+rm *.toc
+rm .DS_Store
+rm .RData
+rm .Rhistory
+rm *~
