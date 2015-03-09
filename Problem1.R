@@ -1,21 +1,26 @@
 Problem1 <- function()
 {
-  ####################################### PART A #######################################
+  # import daily data
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
   month <- 3
   
-  # obtain vectors of the cnt values for which the month is 3 in the years 2011 and 2012
+  ############################### PART A ###############################
+  
+  # obtain vectors of the cnt values for which 
+  # the month is 3 in the years 2011 and 2012
   monthYear0 <- day$cnt[(day$yr == 0) & (day$mnth == month)]
   monthYear1 <- day$cnt[(day$yr == 1) & (day$mnth == month)]
   
-  # calculate the sample mean cnt for March 2011 and March 2012 from the above vectors
+  # calculate the sample mean cnt for 
+  # March 2011 and March 2012 from the above vectors
   X_bar <- mean(monthYear0)
   Y_bar <- mean(monthYear1)
   
   # calculate the difference between the sample mean cnt values
   Difference <- X_bar - Y_bar
   
-  # calculate the sample standard deviation for cnt in March 2011 and March 2012
+  # calculate the sample standard deviation 
+  # for cnt in March 2011 and March 2012
   s1 <- sd(monthYear0)
   s2 <- sd(monthYear1)
   
@@ -31,18 +36,20 @@ Problem1 <- function()
   cat(CI_2means)
   cat("\n\n")
   
-  ####################################### PART B #######################################
+  ############################### PART B ###############################
   
-  # obtain vectors of values for which the daily temperatures in the months 
-  # of March 2011 and March 2012 were above 0.3 
+  # obtain vectors of values for which the daily temperatures in the 
+  # months of March 2011 and March 2012 were above 0.3 
   tempMonthYear0 <- day$cnt[(day$yr == 0) & (day$mnth == month) & (day$temp >.3)]
   tempMonthYear1 <- day$cnt[(day$yr == 1) & (day$mnth == month) & (day$temp > .3)]
   
-  # obtain total number of recordings taken in the month of March 2011 and March 2012
+  # obtain total number of recordings taken 
+  # in the month of March 2011 and March 2012
   n0 <- length(monthYear0)
   n1 <- length(monthYear1)
   
-  # calculate the proportion of days in the months of March 2011 and March 2012 for which
+  # calculate the proportion of days in the months of 
+  # March 2011 and March 2012 for which 
   # the temperature was reater than 0.3
   p_hat0 <- length(tempMonthYear0) / n0
   p_hat1 <- length(tempMonthYear1) / n1
