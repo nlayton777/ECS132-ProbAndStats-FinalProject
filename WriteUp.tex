@@ -47,17 +47,51 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem 1}
+\label{sec:problem1}
+\subsection{Part A: Comparison of Two Means}
+\label{subsec:1a}
+The bike sharing dataset provided by the UC Irvine (UCI) Machine Learning Repository allows us to analyze bike rental statistics during the years 2011 and 2012. We decided to analyze and compare the quantity of bike rentals on days during the months of March 2011 and March 2012 to gain insight as to how much the bike rental rates changed from one year to the next. In more formal terms, we estimated the difference between the average number of bikes rented in March 2011 and the average number of bikes rented in March 2012. To do so, we constructed a confidence interval from the sample provided by UCI to estimate the difference between the population means of the averages from each month. We first had to define our random variables before constructing our confidence interval. Below is a list of the random variables that we used:
+\begin{itemize}
+	\item $X$: the number of bikes rented on any given day in March 2011
+	\item $Y$: the number of bikes rented on any given day in March 2012
+	\item $\bar{X}$: the sample mean of the number of bikes rented per day in March 2011
+	\item $\bar{Y}$: the sample mean of the number of bikes rented per day in March 2012
+	\item $s_1$: the standard deviation of the number of bikes rented per day in March 2011
+	\item $s_2$: the standard deviation of the number of bikes rented per day in March 2012
+\end{itemize}
+An important aspect worth noting is that the random variables $X$ and $Y$ are independent of one another. After defining our random variables, we had to construct our model for constructing the confidence interval. Our model turned out to be the following:
+\begin{equation}
+\bar{X} - \bar{Y} \pm (1.96) \sqrt{\frac{s_{1}^{2}}{n_1} + \frac{s_{2}^{2}}{n_2}}
+\end{equation}
+\dots where $n_1$ and $n_2$ were the number of days in March 2011 and March 2012 (respecfully) for which data was recorded. The R code that we developed to calculate this confidence interval can be found in Appendix~\ref{sec:problem1code}.
 
-In this problem we decided to compare the difference in the number of bikes rented between the months of March 2011 and March 2012. We found that the average number of bike rentals in March 2011 was 2065.968 bikes and that of March 2012 was 5318.548 bikes. The difference between the means of our two samples was found to be -3252.581. We are 95\% confident that the interval from -5932.108 bikes to -573.0535 bikes contains the mean population difference between bike rentals in the months of March 2011 and March 2012.  
-\\
+After running our R calculations, we found that the average number of bike rentals in March 2011 was 2065.968 bikes and that of March 2012 was 5318.548 bikes. The difference between the means of our two samples was -3252.581. The standard deviation of the number of bikes rented in March 2011 was \#\#\#\#, and the standard deviation of that in March 2012 was \#\#\#\#. From these values, we found our confidence interval to be $(-5932.108, -573.0535)$. In formal terms, we are 95\% confident that the difference between the mean number of bike rentals on days in March 2011 and days in March 2012 lies within the interval ranging from $-5932.108$ to $-573.0535$.  
 
-This interval is very large, but shows a significant increase in bike rentals from March 2011 to March 2012, especially considering that the entire interval lies below 0. We will use a proportion of warmers days in March to see if this could have affected the increase in the number of bike rentals in March 2012.
-\\
+Although this is a very wide ranging interval, we still were able to make inferences about the bike rental trends in March 2011 versus the trends in March 2012. Being that we subtracted the sample mean of the bike rentals in March 2012 from that of the bike rentals in March 2011, we inferred that there were significantly more bike rentals in March 2012 than there were in March 2011. This is because the entirety of the interval lies below 0. In the next section, we used a proportion of warmer days in the same two months to see if temperature could have influenced the increase in the number of bike rentals from March 2011 to March 2012.
 
-We wanted to find the proportion of warmer than average days in March 2011 versus March 2012. To do this we calculated the proportion of days where the temperature was over 12.5 degrees Celsius (a value greater than 0.3 from the data we were given) in March 2011 versus March 2012. We found that the proportion of days warmer than 12.5 degrees Celsius in March 2011 was 0.5806452 and in March 2012 was 0.9032258. The difference between the proportions of our two samples was found to be 0.3225833 and the 95\% confidence interval for this data was -0.5250816 to -0.1200797. 
-\\
+\subsection{Part B: Comparison of Two Proportions}
+\label{subsec:1b}
+We wanted to compare the proportion of warmer than average days in March 2011 to those in March 2012. We constructed a confidence interval to estimate the difference between population proportions of the number of warmer days in March 2011 and March 2012. Again, we defined our random variables and then constructed the confidence interval. 
+\begin{itemize}
+	\item $\hat{p_1}$: the sample proportion of warmer days in March 2011
+	\item $\hat{p_2}$: the sample proportion of warmer days in March 2012
+	\item $s_{1}^{2}$: the standard deviation of the proportion of warmer days in March 2011
+		\subitem Mathematical expression: $s_{1}^{2} =\hat{p_1}(1 - \hat{p_1})$
+	\item $s_{2}^{2}$: the standard deviation of the proportion of warmer days in March 2012
+		\subitem Mathematical expression: $s_{2}^{2} = \hat{p_2}(1 - \hat{p_2})$
+\end{itemize}
+The random variables $\hat{p_1}$ and $\hat{p_2}$ are independent of one another. The model that we used to calculate the confidence interval for the difference in the two proportions was:
+\begin{equation}
+\hat{p_1} - \hat{p_2} \pm (1.96) \sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}} 
+\end{equation}
+\begin{equation}
+= \hat{p_1} - \hat{p_2} \pm (1.96) \sqrt{\frac{\hat{p_1}(1 - \hat{p_1})}{n_1}+\frac{\hat{p_1}(1 - \hat{p_1})}{n_2}}
+\end{equation}
+\dots where $n_1$ and $n_2$ are the number of days in March 2011 and March 2012 (respectfull) during which the temperature was warm. We defined a "warmer day" to be one in which the temperature rose above 12.5 degrees Celsius, which translated to be 0.3 in the UCI dataset. The R code that was developed to evaluate the above expression can be found in Appendix~\ref{sec:problem1code}.
 
-These two confidence intervals show that there is a correlation between the proportion of warmer days and the number of bike rentals in the month of March. We can see that both the proportion of warmer days and the number of bike rentals in March 2012 were greater than that of March 2011, which suggests that there is a correlation between warmer weather and a larger number of bike rentals.
+In our calculation we found that the proportion of warmer days in March 2011 was 0.5806452 and that the proportion of warmer days in March 2012 was 0.9032258. The difference between the proportions of our two samples was found to be 0.3225833. The standard deviation of the proportion of warmer days in March 2011 was \#\#\#\#, and the standard deviation of the proportion of warmer days in March 2012 was \#\#\#\#. The resulting confidence interval was $(-0.5250816, -0.1200797)$. We can say that we are 95\% confident that the difference between the population proportions for warmer days in the months of March 2011 and March 2012 lies within the interval ranging from $-0.5250816$ to  $-0.1200797$.
+
+These two confidence intervals show that there could be a relationship between the proportion of warmer days and the number of bike rentals in the month of March. We can see that both the proportion of warmer days and the number of bike rentals in March 2012 were greater than that of March 2011, which suggests that warmer weather could have influenced more people to rent bikes. Although it makes intuitive sense that there is a relationship between warmer weather and an increase in bike rentals, our calculations cannot ensure that warmer weather was, in fact, the reason why there were more people renting bikes. We can only say that there is a potential relationship, given that the confidence intervals indicate as such. 
 
 \pagebreak
 
@@ -65,26 +99,61 @@ These two confidence intervals show that there is a correlation between the prop
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem 2}
+\label{sec:problem2}
+\subsection{Part A}
+\label{subsec:2a}
+\subsection{Part B}
+\label{subsec:2b}
+\subsection{Part C}
+\label{subsec:2c}
+\subsection{Part D}
+\label{subsec:2d}
+\subsection{Part E}
+\label{subsec:2e}
+\subsection{Part F}
+\label{subsec:2f}
+\subsection{Part G}
+\label{subsec:2g}
+\subsection{Part H}
+\label{subsec:2h}
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem 3}
+\label{sec:problem3}
+\subsection{Part A: Nonparametric Density Estimation}
+\label{subsec:3a}
+\subsection{Part B: Method of Moments and the Maximum Likelihood Fittings}
+\label{subsec:3b}
+\subsection{Part C: Plotting Parametric-Model Curves}
+\label{subsec:3c}
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
 \section{Problem 1 Code}
+\label{sec:problem1code}
 \lstinputlisting{Problem1.R}
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem 2 Code}
+\label{sec:problem2code}
 \lstinputlisting{Problem2.R}
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem 3 Code}
+\label{sec:problem3code}
 \lstinputlisting{Problem3.R}
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem 3 Plots}
+\label{sec:problem3plots}
+\subsection{Part A}
+\label{sec:problem3aplot}
+\includegraphics{Problem3A}
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -105,6 +174,8 @@ These two confidence intervals show that there is a correlation between the prop
 	\item Nicholas Layton:
 	\begin{enumerate}
 		\item Developed R code for Problem 1 Part A
+		\item Helped elaborate on Problem 1 Write Up
+		\item Developed the R code for Problem 3 Part A
 	\end{enumerate}
 	
 	\item Syeda Inamdar:

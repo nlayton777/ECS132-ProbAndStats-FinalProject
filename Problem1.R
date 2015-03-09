@@ -1,10 +1,8 @@
-Problem1 <- function()
+PartA <- function()
 {
   # import daily data
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
   month <- 3
-  
-  ############################### PART A ###############################
   
   # obtain vectors of the cnt values for which 
   # the month is 3 in the years 2011 and 2012
@@ -34,15 +32,24 @@ Problem1 <- function()
   cat("Confidence Interval for Difference between 2 population means\n")
   cat("of bike rentals in March from 2011 to 2012:\n")
   cat(CI_2means)
-  cat("\n\n")
-  
-  ############################### PART B ###############################
-  
+} # PartA
+
+PartB <- function()
+{
+  # import daily data
+  day <- read.csv(file="day.csv",header=TRUE,sep=",")
+  month <- 3
+
   # obtain vectors of values for which the daily temperatures in the 
   # months of March 2011 and March 2012 were above 0.3 
   tempMonthYear0 <- day$cnt[(day$yr == 0) & (day$mnth == month) & (day$temp >.3)]
   tempMonthYear1 <- day$cnt[(day$yr == 1) & (day$mnth == month) & (day$temp > .3)]
   
+  # obtain vectors of the cnt values for which 
+  # the month is 3 in the years 2011 and 2012
+  monthYear0 <- day$cnt[(day$yr == 0) & (day$mnth == month)]
+  monthYear1 <- day$cnt[(day$yr == 1) & (day$mnth == month)]
+
   # obtain total number of recordings taken 
   # in the month of March 2011 and March 2012
   n0 <- length(monthYear0)
@@ -68,5 +75,4 @@ Problem1 <- function()
   cat("of days in which the temperature in March \n")
   cat("was greater than .3 from 2011 to 2012:\n")
   cat(CI_2props)
-  cat("\n")
-} # end Problem1
+} # PartB
