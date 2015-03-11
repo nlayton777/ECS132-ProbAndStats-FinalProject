@@ -1,6 +1,6 @@
 rm *.aux
 rm *.log
-rm *.pdf
+rm Project.pdf
 rm *.synctex.gz
 rm *.toc
 rm .DS_Store
