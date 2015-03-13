@@ -145,12 +145,32 @@ E(X_i) = \mu = \frac{1}{n} \sum_{i=1}^n X_i
 \begin{equation}
 E(X_i^2) = \sigma ^ 2 + \mu ^ 2 = \frac{1}{n} \sum_{i=1}^{n} X_i^2
 \end{equation}
-We were able to calculate these values from our sample data of daily temperatures using R. The code that we developed to calculate these moments can be found in Appendix~\ref{sec:problem3code} in the function labeled "PartB()".
-\subsubsection{Maximum Likelihood}
+We were able to calculate these values from our sample data of daily temperatures using R. The code that we developed to calculate these moments can be found in Appendix~\ref{sec:problem3code} in the function labeled "PartB()". From our code we determined the method of moments estimator for $E(X)$ to be .4953848 and the estimator for $E(X_i^2)$ to be .2788679 and therefore calculated the variance, $\sigma^2$, to be 0.030473 and the standard deviation, $\sigma$, to be 0.174565.
+ 
+\subsubsection{Method of Maximum Likelihood}
 \label{subsubsec:maximumlikelihood}
+The method of maximum likelihood is a more commonly used method to find the likelihood (the probability) of our data values occurring. In the case of our normal distribution, the parameters are mean and standard deviation. To accurately fit the normal parametric model to our data, we had to determine the method of maximum likelihood estimators for the mean and standard deviation. The first step to find the estimators was to determine the likelihood function in terms of the product of the density values. We determined this to be:
+\begin{equation}
+L=\Pi_{i=1}^{n}\dfrac{1}{\sqrt{2\pi\sigma^2}}e^{-(x_i-\mu)^2/(2\sigma^2)}
+\end{equation}
+We can simplify this equation into:
+\begin{equation}
+L=(2\pi\sigma^2)^{-n/2}e^{-\dfrac{1}{2\sigma^2}\sum_{i}(x_i-\mu)^2}
+\end{equation}
+
+However, it is usually easier to maximize the log likelihood of a normal distribution. We determined this to be:
+\begin{equation}
+l(\sigma) = -\frac{n}{2}log(2\pi) - nlog(\sigma) - \frac{1}{2\sigma^{2}}\sum_{i}(x_i-\mu^2)
+\end{equation} 
+
+From here we were able to calculate the values from our sample data of daily temperature using R's mle() function. The code that we developed to calculate these moments can be found in Appendix~\ref{sec:problem3code} in the function labeled "PartB()". From our code we determined the method of maximum likelihood estimator for the mean, $\mu$, to be .4953848 and the estimator for the standard deviation, $\sigma$, to be .1829285. 
+
+
 
 \subsection{Part C: Plotting Parametric-Model Curves}
 \label{subsec:3c}
+We plotted our two parametric model curves on top of our non parametric density, and found them to both be very similar. As you can see, the calculated values of $\mu$ and $\sigma$ were very similar in Method of Moments and Method of Maximum Likelihood. In Appendix~\ref{sec:problem3plots} you can find our plots for Method of Moments and Method of Maximum Likelihood superimposed on our plot from Part A(). The parametric curve for Method of Moments in Appendix~\ref{subsesc:problem3moments} is drawn in red and the curve for Method of Maximum Likelihood in Appendix~\ref{subsesc:problem3cmaximumlikelihood}  is drawn in blue. The graph of Appendix~\ref{subsesc:problem3ccombined} shows a curve in purple, which includes the plot of Method of Moments and Method of Maximum Likelihood and shows us that both these methods calculated the same mean and standard deviations for the normal distribution.
+
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
