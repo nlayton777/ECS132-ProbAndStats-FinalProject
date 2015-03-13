@@ -1,9 +1,6 @@
 library(ggplot2)
 library(stats4)
 
-day <- read.csv(file="day.csv",header=TRUE,sep=",")
-
-
 PartA <- function()
 {
     day <- read.csv(file="day.csv",header=TRUE,sep=",")
@@ -29,7 +26,8 @@ PartB <- function()
   
   # moment2 = E(X^2)
   moment2 <- mean((day$temp) ^ 2) 
-  
+
+  # construct vector of mu and sigma
   moments <-c(moment1,sqrt(moment2 - (moment1 ^ 2)))
   
   ########## MAXIMUM LIKELIHOOD ########## 
