@@ -14,4 +14,24 @@ PartB <- function()
   #summary(lm(training$cnt ~ training$season + training$yr + training$mnth + training$holiday + training$weekday + training$workingday + training$weathersit + training$temp + training$atemp + training$hum + training$windspeed))
   trainingModel <- lm(training$cnt ~ training$season + training$yr + training$mnth + training$holiday + training$weekday + training$workingday + training$weathersit + training$temp + training$atemp + training$hum + training$windspeed)
   summary(predict(trainingModel,validation))
-}
+} # PartB()
+
+PartC <- function()
+{
+  
+} # PartC()
+
+PartD <- function()
+{
+  
+} # PartD()
+
+PartE <- function()
+{
+  
+} # PartE()
+
+PartF <- function()
+{
+  
+} # PartF()

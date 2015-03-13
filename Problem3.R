@@ -9,7 +9,8 @@ PartA <- function()
     p <- ggplot(day)
     p <- p + geom_histogram(aes(temp,y =..density..),binwidth=width) 
     p <- p + xlab("Temperature") + ylab("Frequency") + ggtitle("Daily Temperature Distribution")
-    p <- p + theme(title=element_text(size=12),text=element_text(size=12),axis.ticks=element_line(size=2)) 
+    p <- p + theme(title=element_text(size=12),
+                  text=element_text(size=12),axis.ticks=element_line(size=2)) 
     print(p)
     ggsave("Problem3A.pdf",width=5,height=7,plot=last_plot())
     return (p)
@@ -41,13 +42,10 @@ PartB <- function()
     return (-loglik)
   }
   
-  # calc mle
-  ests <- mle(minuslogl=ll,start=list(mu=0.5,sigma=0.5))
+  # calc mle and get estimates for parameters
+  ests <- mle(minuslogl=ll,start=list(mu=0.5,sigma=0.5))@coef
   
-  # get estimates for parameters
-  ests2 <- ests@coef
-  
-  return(cbind(moments,ests2))
+  return(cbind(moments,ests))
 } # PartB
 
 PartC <- function()
@@ -57,16 +55,19 @@ PartC <- function()
   moments <- PartB()
   
   ########## METHOD OF MOMENTS ##########
-  p1 <- p + stat_function(fun=dnorm,color="red",args=list(mean=moments[1,1],sd=moments[2,1]))
+  p1 <- p + stat_function(fun=dnorm,color="red",
+                          args=list(mean=moments[1,1],sd=moments[2,1]))
   print(p1)
   ggsave("Problem3CMoments.pdf",width=5,height=7,plot=last_plot())
   
   ########## MAXIMUM LIKELIHOOD ##########
-  p2 <- p + stat_function(fun=dnorm,color="blue",args=list(mean=moments[1,2],sd=moments[2,2]))
+  p2 <- p + stat_function(fun=dnorm,color="blue",
+                          args=list(mean=moments[1,2],sd=moments[2,2]))
   print(p2)
   ggsave("Problem3CMLE.pdf",width=5,height=7,plot=last_plot())
   
-  p3 <- p1 + stat_function(fun=dnorm,color="blue",args=list(mean=moments[1,2],sd=moments[2,2]))
+  p3 <- p1 + stat_function(fun=dnorm,color="blue",
+                           args=list(mean=moments[1,2],sd=moments[2,2]))
   print(p3)
   ggsave("Problem3C.pdf",width=5,height=7,plot=last_plot())
 } # PartC

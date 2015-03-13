@@ -64,8 +64,12 @@ PartB <- function()
   # calculate the difference between the proportions
   Difference2 <- p_hat0 - p_hat1
   
+  #calculate variances
+  var0 <- p_hat0 * (1 - p_hat0)
+  var1 <- p_hat1 * (1 - p_hat1)
+  
   # calculate the standard error
-  SE2 <- sqrt((p_hat0 * (1 - p_hat0) / n0) + (p_hat1 * (1 - p_hat1) / n1))
+  SE2b <- sqrt((var0 / n0) + (var1 / n1))
   
   # construct the confidence interval
   CI_2props <- c(Difference2 - 1.96 *SE2, Difference2 + 1.96 * SE2)
