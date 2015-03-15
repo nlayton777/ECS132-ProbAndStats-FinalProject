@@ -17,35 +17,24 @@ PartB <- function()
 {
   # read in the data
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
+  nr <- nrow(day)
+  #training and validation are indexes into our data
+  training <- sample(1:nr, ceiling(2*nr/3), replace=FALSE)
+  validation <- setdiff(1:nr, training)
   
-  # get 2/3 of original data set for training set
-  n1 <- ceiling(2 * nrow(day) / 3)
-  training <- day[sample(n1, replace=FALSE),]
+  #modelling count based on 
+  # "season"     "yr"    "mnth"    
+  # "holiday"    "weekday"    "workingday"
+  # "weathersit" "temp"       "atemp"      "hum"       
+  # "windspeed"
+  trainingModel <- lm(day[training, 16] ~ .,day[training, 3:13])
+  print(summary(trainingModel))
+  prediction <- predict(trainingModel,newdata=day[validation, 3:13])
+  difference <- day[validation,16] - prediction
   
-  # get 1/3 of original data set for validation set
-  n2 <- nrow(day) - n1
-  validation <- day[sample(n2, replace=FALSE),]
-  validation <- cbind(validation['season'],
-                      validation['yr'],validation['mnth'],
-                      validation['holiday'],validation['weekday'],
-                      validation['workingday'],validation['weathersit'],
-                      validation['temp'],validation['atemp'],
-                      validation['hum'],validation['windspeed'])
-  
-  # model the training set
-  trainingModel <- lm(training$cnt ~ training$season + 
-                        training$yr + training$mnth + 
-                        training$holiday + training$weekday + 
-                        training$workingday + training$weathersit + 
-                        training$temp + training$atemp + 
-                        training$hum + training$windspeed)
-  
-  # display a summary of the model
-  summary(trainingModel)
-
-  # predict values based on training model
-  predictions <- predict(trainingModel,validation)
-  return (predictions)
+  diff <- c(mean(abs(difference)), min(abs(difference)), max(abs(difference)))
+  names(diff) <- c("mean", "min", "max")
+  return(diff)  
 
 } # PartB()
 
@@ -101,8 +90,25 @@ PartD <- function()
 
 PartE <- function()
 {
-  # read in the data
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
+  nr <- nrow(day)
+  #training and validation are indexes into our data
+  training <- sample(1:nr, ceiling(2*nr/3), replace=FALSE)
+  validation <- setdiff(1:nr, training)
+  
+  #modelling count based on 
+  # "season"     "yr"    "mnth"    
+    # "holiday"        "workingday"
+  # "weathersit" "temp"       "atemp"      "hum"       
+  # "windspeed"
+  trainingModel <- lm(day[training, 16] ~ .,day[training, c(3:6, 8:13)])
+  print(summary(trainingModel))
+  prediction <- predict(trainingModel,newdata=day[validation, c(3:6, 8:13)])
+  difference <- day[validation,16] - prediction
+  
+  diff <- c(mean(abs(difference)), min(abs(difference)), max(abs(difference)))
+  names(diff) <- c("mean", "min", "max")
+  return(diff)  
 } # PartE()
 
 PartF <- function()
