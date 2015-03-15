@@ -42,8 +42,9 @@ PartC <- function()
 PartD <- function() 
 { #Still need to fix 
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
-  iTermWorkdayWeatherSit <- day$workingday * day$weathersit
-  summary(lm(day$cnt ~ day$season + day$yr + day$mnth + day$holiday + day$weekday + day$workingday + day$weathersit + day$temp + day$atemp + day$hum + day$windspeed+iTermWorkdayWeatherSit))
+  day$tempandworkingday <- day$workingday * day$temp
+  summary(lm(day$cnt ~ day$season + day$yr + day$mnth + day$holiday + day$weekday + day$workingday + day$weathersit + day$temp + day$atemp + day$hum + day$windspeed+day$tempandworkingday))
+ 
 } # PartD()
 
 PartE <- function()
