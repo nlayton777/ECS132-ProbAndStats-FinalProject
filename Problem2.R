@@ -13,13 +13,13 @@ PartB <- function()
   validation <- setdiff(1:nr, training)
   
   #modelling count based on 
-  # "dteday"     "season"     "yr"    "mnth"    
+  # "season"     "yr"    "mnth"    
   # "holiday"    "weekday"    "workingday"
   # "weathersit" "temp"       "atemp"      "hum"       
   # "windspeed"
-  trainingModel <- lm(day[training, 16] ~ .,day[training, 4:13])
+  trainingModel <- lm(day[training, 16] ~ .,day[training, 3:13])
   print(summary(trainingModel))
-  prediction <- predict(trainingModel,newdata=day[validation, 4:13])
+  prediction <- predict(trainingModel,newdata=day[validation, 3:13])
   difference <- day[validation,16] - prediction
   
   diff <- c(mean(abs(difference)), min(abs(difference)), max(abs(difference)))
