@@ -42,10 +42,11 @@ PartB <- function()
   
   # display a summary of the model
   summary(trainingModel)
-  
+
   # predict values based on training model
   predictions <- predict(trainingModel,validation)
   return (predictions)
+
 } # PartB()
 
 PartC <- function()
@@ -67,6 +68,7 @@ PartC <- function()
   
   # show a summary of model
   summary(trainingModel)
+
 } # PartC()
 
 PartD <- function()
