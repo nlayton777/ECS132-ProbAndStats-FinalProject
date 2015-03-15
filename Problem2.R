@@ -68,7 +68,6 @@ PartC <- function()
   
   # show a summary of model
   summary(trainingModel)
-
 } # PartC()
 
 PartD <- function()
@@ -95,6 +94,8 @@ PartD <- function()
                         #training$windspeedandworkingday +
                         training$mnthandweathersit +
                         training$tempsquared)
+  
+  # display summary 
   summary(trainingModel)
 } # PartD()
 

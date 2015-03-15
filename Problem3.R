@@ -13,7 +13,9 @@ PartA <- function()
     # create plot
     p <- ggplot(day)
     p <- p + geom_histogram(aes(temp,y =..density..),binwidth=width) 
-    p <- p + xlab("Temperature") + ylab("Frequency") + ggtitle("Daily Temperature Distribution")
+    p <- p + xlab("Temperature") 
+    p <- p + ylab("Frequency") 
+    p <- p + ggtitle("Daily Temperature Distribution")
     p <- p + theme(title=element_text(size=12),
                   text=element_text(size=12),axis.ticks=element_line(size=2)) 
     print(p)
