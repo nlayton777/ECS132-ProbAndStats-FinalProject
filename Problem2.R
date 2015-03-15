@@ -14,17 +14,21 @@ PartB <- function()
   
   trainingModel <- lm(training$cnt ~ training$season + training$yr + training$mnth + training$holiday + training$weekday + training$workingday + training$weathersit + training$temp + training$atemp + training$hum + training$windspeed)
   summary(trainingModel)
+  
+  
   predict(trainingModel,validation)
 } # PartB()
 
 PartC <- function()
 {
-  
+  # similar to above 
 } # PartC()
 
-PartD <- function()
-{
-  
+PartD <- function() 
+{ #Still need to fix 
+  day <- read.csv(file="day.csv",header=TRUE,sep=",")
+  iTermWorkdayWeatherSit <- day$workingday * day$weathersit
+  summary(lm(day$cnt ~ day$season + day$yr + day$mnth + day$holiday + day$weekday + day$workingday + day$weathersit + day$temp + day$atemp + day$hum + day$windspeed+iTermWorkdayWeatherSit))
 } # PartD()
 
 PartE <- function()
