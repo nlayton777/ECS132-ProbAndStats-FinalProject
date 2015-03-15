@@ -7,13 +7,14 @@ PartA <- function()
 PartB <- function()
 {
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
-  n <- ceiling(2 * nrow(day) / 3)
-  training <- day[sample(n, replace=FALSE),]
-  validation <- setdiff(day,training)
+  n1 <- ceiling(2 * nrow(day) / 3)
+  n2 <- ceiling(nrow(day) / 3)
+  training <- day[sample(n1, replace=FALSE),]
+  validation <- day[sample(n2, replace=FALSE),]
   
-  #summary(lm(training$cnt ~ training$season + training$yr + training$mnth + training$holiday + training$weekday + training$workingday + training$weathersit + training$temp + training$atemp + training$hum + training$windspeed))
   trainingModel <- lm(training$cnt ~ training$season + training$yr + training$mnth + training$holiday + training$weekday + training$workingday + training$weathersit + training$temp + training$atemp + training$hum + training$windspeed)
-  summary(predict(trainingModel,validation))
+  summary(trainingModel)
+  predict(trainingModel,validation)
 } # PartB()
 
 PartC <- function()
