@@ -40,7 +40,7 @@
 \title{\vspace{-3ex}\bf Final Project\\[2ex] 
        \normalsize ECS 132 --- Winter 2015}
 \date{\today}
-\author{\bf William Otwell (\#\#\#\#\#\#\#\#\#)\\ \bf Rupali Saiya (\#\#\#\#\#\#\#\#\#)\\ \bf Nicholas Layton(996933702)\\ \bf Syeda Inamdar(\#\#\#\#\#\#\#\#\#)\\}
+\author{\bf William Otwell (997371020)\\ \bf Rupali Saiya (997286348)\\ \bf Nicholas Layton(996933702)\\ \bf Syeda Inamdar(997323599)\\}
 
 \begin{document}
 \maketitle
@@ -109,10 +109,9 @@ These two confidence intervals show that there could be a relationship between t
 \subsection{Part C}
 \label{subsec:2c}
 
-When we fit a linear model on our training data set, the output returned is our sample estimate (estimate based on our sample data). Below is the output R returned to us.
-\\ 
-\includegraphics[totalheight=0.6\textheight]{Output.jpg}
+When we fit a linear model on our training data set, the output returned is our sample estimate (estimate based on our sample data). The output that was returned is included in the Appendix~\ref{sec:problem2coutput}.
 \\
+
 The first coefficient returned is the intercept value, which we can call $\beta_{0}$. The estimates for our next 11 coefficients returned are our predictors, which we can call  $\beta_{i}$, where i is a number 1 through 11. These values can help us estimate average bike ridership from our sample data. The linear model of our estimated regression would be:
 \begin{equation}
 \text{mean count} = \beta_0 + \beta_1 \text{season} + \beta_2 \text{yr} + \beta_3\text{mnth} + \beta_4\text{holiday} + \beta_5\text{weekday} + \beta_6\text{workingday} +  \dots
@@ -203,6 +202,18 @@ We plotted our two parametric model curves on top of the nonparametric density e
 \label{sec:problem2code}
 \lstinputlisting{Problem2.R}
 \pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem 2 Output}
+\label{sec:problem2output}
+\subsection{Part C}
+\includegraphics{Output.jpg}
+\label{sec:problem2coutput}
+\subsection{Part D}
+\includegraphics{Part2Doutput.jpg}
+\label{sec:problem2doutput}
+\pagebreak
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem 3 Code}
