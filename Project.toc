@@ -1,0 +1,31 @@
+\contentsline {section}{\numberline {1}Problem 1}{3}
+\contentsline {subsection}{\numberline {1.1}Part A: Comparison of Two Means}{3}
+\contentsline {subsection}{\numberline {1.2}Part B: Comparison of Two Proportions}{4}
+\contentsline {section}{\numberline {2}Problem 2}{5}
+\contentsline {subsection}{\numberline {2.1}Part A}{5}
+\contentsline {subsection}{\numberline {2.2}Part B}{5}
+\contentsline {subsection}{\numberline {2.3}Part C}{5}
+\contentsline {subsection}{\numberline {2.4}Part D}{5}
+\contentsline {subsection}{\numberline {2.5}Part E}{6}
+\contentsline {subsection}{\numberline {2.6}Part F}{6}
+\contentsline {subsection}{\numberline {2.7}Part G}{6}
+\contentsline {subsection}{\numberline {2.8}Part H}{6}
+\contentsline {section}{\numberline {3}Problem 3}{7}
+\contentsline {subsection}{\numberline {3.1}Part A: Nonparametric Density Estimation}{7}
+\contentsline {subsection}{\numberline {3.2}Part B: Fitting a Parametric Model}{7}
+\contentsline {subsubsection}{\numberline {3.2.1}Method of Moments}{7}
+\contentsline {subsubsection}{\numberline {3.2.2}Method of Maximum Likelihood}{7}
+\contentsline {subsection}{\numberline {3.3}Part C: Plotting Parametric-Model Curves}{8}
+\contentsline {section}{\numberline {A}Problem 1 Code}{9}
+\contentsline {section}{\numberline {B}Problem 2 Code}{11}
+\contentsline {section}{\numberline {C}Problem 2 Output}{14}
+\contentsline {subsection}{\numberline {C.1}Part C}{14}
+\contentsline {subsection}{\numberline {C.2}Part D}{15}
+\contentsline {subsection}{\numberline {C.3}Part E and F}{16}
+\contentsline {section}{\numberline {D}Problem 3 Code}{17}
+\contentsline {section}{\numberline {E}Problem 3 Plots}{19}
+\contentsline {subsection}{\numberline {E.1}Part A}{19}
+\contentsline {subsection}{\numberline {E.2}Part C: Method of Moments}{20}
+\contentsline {subsection}{\numberline {E.3}Part C: Maximum Likelihood}{21}
+\contentsline {subsection}{\numberline {E.4}Part C: Combined}{22}
+\contentsline {section}{\numberline {F}Group Member Contributions}{23}
