@@ -132,8 +132,11 @@ We have added two interaction terms and one quadratic term to the linear model. 
 Compared to part C, our R-squared value is now 81.73\% which demonstrates that this model is a more accurate representation of our sample estimate. 
 \subsection{Part E}
 \label{subsec:2e}
+Our final model included the following attributes: year (yr), temp, humidity (hum), windspeed,tempsquared, spring, summer, fall, raining. Tempsquared is the temp values squared. We chose to do this so that we could place more emphasis on the days that had warmer weather because that seems to be a very large contributing factor to bike ridership. In addition, we decided to break the seasons into spring, summer, and fall because the boolean values for season were being incorporated into the original model. For example, fall was flagged as a 3. In  the original model, that 3 would be carried into the calculations. By adding these new attributes, we can now make spring, summer, and fall a boolean 1 or 0 so the calculations are not skewed. Although we are only tracking spring, summer, and fall values, we can assume if the value is not one of the three it is winter. Therefore, we can use these values to compare against winter. Lastly, the raining attribute compares weather situations 1 and 2 against 3 and 4 (clear and misty vs. light and heavy rain). We chose to exclude the workingday, weekend, weekday, and holiday attributes because we saw these items did not impact bike ridership.
+
 \subsection{Part F}
 \label{subsec:2f}
+The output that R returned to us is in Appendix~\ref{sec:problem2efoutput}. The first indication that this model is more accurate than our previous models is that our R-square value is now approximately 0.8436. This shows that we can accurately predict 84.36\% of biker ridership for our sample. We also print out the mean, min and max of the difference between value that was predicted by the regression and the actual value of the validation set. The average difference between our prediction and validation data was approximately 573.579. We ran our model multiple times with different attributes to gage whether this difference in mean would increase or decrease, and found this average difference to be among the lower values. 
 \subsection{Part G}
 \label{subsec:2g}
 \subsection{Part H}
@@ -211,14 +214,16 @@ We plotted our two parametric model curves on top of the nonparametric density e
 \section{Problem 2 Output}
 \label{sec:problem2output}
 \subsection{Part C}
-\includegraphics{Output.jpg}
+\includegraphics[totalheight=0.65\textheight]{Output.jpg}
 \label{sec:problem2coutput}
 \subsection{Part D}
-\includegraphics{Part2Doutput.jpg}
+\includegraphics[totalheight=0.65\textheight]{Part2Doutput.jpg}
 \label{sec:problem2doutput}
 \pagebreak
-
-
+\subsection{Part E and F}
+\includegraphics{Output2PartEF.jpg}
+\label{sec:problem2efoutput}
+\pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem 3 Code}
 \label{sec:problem3code}

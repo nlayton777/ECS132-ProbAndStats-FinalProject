@@ -15,7 +15,6 @@ PartA <- function()
 
 PartB <- function()
 {
-  # read in the data
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
   nr <- nrow(day)
   
@@ -25,10 +24,6 @@ PartB <- function()
   
   # modeling count based on the following attributes
   # from training data
-  # "season"     "yr"    "mnth"    
-  # "holiday"    "weekday"    "workingday"
-  # "weathersit" "temp"       "atemp"      "hum"       
-  # "windspeed"
   trainingModel <- lm(day[training, 16] ~ .,day[training, 3:13])
   prediction <- predict(trainingModel,newdata=day[validation, 3:13])
   difference <- day[validation,16] - prediction
@@ -42,7 +37,6 @@ PartB <- function()
 
 PartC <- function()
 {
-  # read in the data
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
   
   # get 2/3 of original data set for training set
@@ -94,6 +88,7 @@ PartD <- function()
 
 PartEF <- function()
 {
+  
   # read in the data
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
   day$tempandworkingday <- day$temp * day$workingday
@@ -104,7 +99,6 @@ PartEF <- function()
   day$summer <- ifelse(day$season == 2,1,0)
   day$fall <- ifelse(day$season == 3,1,0)
   day$raining <- ifelse(day$weathersit == 3 | day$weathersit == 4,1,0)
-  
   
   nr <- nrow(day)
   
