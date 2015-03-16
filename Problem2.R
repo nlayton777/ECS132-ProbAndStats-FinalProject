@@ -15,7 +15,6 @@ PartA <- function()
 
 PartB <- function()
 {
-  # read in the data
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
   nr <- nrow(day)
   
@@ -38,7 +37,6 @@ PartB <- function()
 
 PartC <- function()
 {
-  # read in the data
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
   
   # get 2/3 of original data set for training set
@@ -90,6 +88,7 @@ PartD <- function()
 
 PartEF <- function()
 {
+  
   # read in the data
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
   day$tempandworkingday <- day$temp * day$workingday
