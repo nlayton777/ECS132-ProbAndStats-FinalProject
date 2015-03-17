@@ -104,24 +104,23 @@ These two confidence intervals show that there could be a relationship between t
 \label{sec:problem2}
 \subsection{Part A}
 \label{subsec:2a}
-In this part we realized that the "casual", "registered" and "dtedate" attributes were not necessary to include as predictors. All other attributes were included in our linear model. The output of the "summary" function for this model can be seen in Appendix~\ref{subsec:problem2aoutput}, and the code for this part can be seen in Appendix~\ref{sec:problem2code}.
+In this part we realized that the casual, registered and dtedate attributes could not be included in our set of predictor variables. This is because casual and registered were both types of ridership, which meant that they were subsets of the data for the response variable cnt, which is the number of rentals of bikes for that particular day. The attribute dteday wasn't even a numerical data type, and therefore could not be included. All other attributes were included in our linear model. The output of the "summary()" function for this model can be seen in Appendix~\ref{subsec:problem2aoutput}, and the code for this part can be seen in Appendix~\ref{sec:problem2code}.
 \subsection{Part B}
 \label{subsec:2b}
-Please see Appendix~\ref{sec:problem2code} for the code from Part B. Part C and D will explore the output of this code in detail.   
+For this part, we formed a model from the training data, and used R's "predict()" function to form a vector of predictions from our validation data. We then calculated the difference between the actual values of the validation set and the predicted values. We then calculated the mean, the minimum value, and the maximum value of the set of differences to get an idea for how close our model was to predicting the actual value of the validation data. Please see Appendix~\ref{sec:problem2code} for the code from Part B. Part C and D will explore the output of this code in detail.   
 \subsection{Part C}
 \label{subsec:2c}
+We fit a linear model to our training set using R's "lm()" function to produce estimates of the coefficients for our linear model from the sample data, which we denote as $\hat{\beta}_{i}$. The output produced by R's "summary()" function can be found in Appendix~\ref{subsec:problem2coutput}.
 
-When we fit a linear model on our training data set, the output returned is our sample estimate (estimate based on our sample data). The output that was returned can be found in Appendix~\ref{subsec:problem2coutput}.
-
-The first coefficient returned is the intercept value, which we can call $\beta_{0}$. The estimates for our next 11 coefficients returned are our predictors, which we can call  $\beta_{i}$, where i is a number 1 through 11. These values can help us estimate average bike ridership from our sample data. The linear model of our estimated regression would be:
+The first coefficient returned is the intercept value, which we can call $\hat{\beta}_{0}$. The estimates for the remaining coefficients represent how each predictor variable affects the response variable. We denote these as $\hat{\beta}_{i}$, where $i=1,2,...,11$. These values can help us estimate average bike ridership from our sample data. The linear model of our estimated regression is
 \begin{equation}
-\text{mean count} = \beta_0 + \beta_1 \text{season} + \beta_2 \text{yr} + \beta_3\text{mnth} + \beta_4\text{holiday} + \beta_5\text{weekday} + \beta_6\text{workingday} +  \dots
+\text{mean count} = \hat{\beta}_0 + \hat{\beta}_1 \text{season} + \hat{\beta}_2 \text{yr} + \hat{\beta}_3\text{mnth} + \hat{\beta}_4\text{holiday} + \hat{\beta}_5\text{weekday} + \hat{\beta}_6\text{workingday} +  \dots
 \end{equation}
 \begin{equation}
-\dots \beta_7 \text{weathersit} + \beta_8 \text{temp} + \beta_9 \text{atemp} + \beta_{10} \text{hum} + \beta_{11} \text{windspeed}
+\dots \hat{\beta}_7 \text{weathersit} + \hat{\beta}_8 \text{temp} + \hat{\beta}_9 \text{atemp} + \hat{\beta}_{10} \text{hum} + \hat{\beta}_{11} \text{windspeed}
 \end{equation}
 
-The above just gives a sample estimate, it is not representative of the population bike ridership function. Looking at the estimate values for the coefficients one can see that we have positive and negative values. The coefficients that have negative values indicate attributes that result in a decrease of bike ridership. For example, the estimate for holidays is -380.192. This makes sense because bike ridership would decrease if it is a holiday as most people would be out of town or with their families in our sample. The coefficients that have positive values indicate attributes that result in an increase of bike ridership. For example, the estimate for temp is 487.505, which indicates that as the temperature increases (gets warmer) there is more bike ridership on average in our sample.  
+The above just gives a sample estimate of the population bike ridership. Looking at the estimate values for the coefficients one can see that we have positive and negative values. The coefficients that have negative values indicate attributes that result in a decrease of bike ridership. For example, the estimate for holidays is -380.192. This makes sense because bike ridership would decrease if it is a holiday as most people would be out of town or with their families in our sample. The coefficients that have positive values indicate attributes that result in an increase of bike ridership. For example, the estimate for temp is 487.505, which indicates that as the temperature increases (gets warmer) there is more bike ridership on average in our sample.  
 
 To get an idea of how accurate our estimate is, we can use the standard error of each of $\beta_i$ to calculate a 95\% confidence interval. This will tell us that we are 95\% confident that the true predictor for that particular coefficient is in that interval. The R-squared value tells us that we can predict bike ridership from these eleven coefficients about 76.31\% of the time. 
 

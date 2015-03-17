@@ -60,7 +60,6 @@ PartD <- function()
   # read in the data
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
   day$tempandworkingday <- day$temp * day$workingday
-  #day$windspeedandworkingday <- day$windspeed * day$workingday
   day$mnthandweathersit <- day$mnth * day$weathersit
   day$tempsquared <- day$temp * day$temp
   day$cold <- ifelse(day$temp < 0.25, 1, 0)
@@ -78,7 +77,6 @@ PartD <- function()
                         training$temp + training$atemp + 
                         training$hum + training$windspeed +
                         training$tempandworkingday + 
-                        #training$windspeedandworkingday +
                         training$mnthandweathersit +
                         training$tempsquared)
   
@@ -91,16 +89,15 @@ PartEF <- function()
   
   # read in the data
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
+  nr <- nrow(day)
+  
+  # modify/append to original data set
   day$tempandworkingday <- day$temp * day$workingday
-  #day$windspeedandworkingday <- day$windspeed * day$workingday
-  #day$mnthandweathersit <- day$mnth * day$weathersit
   day$tempsquared <- day$temp * day$temp
   day$spring <- ifelse(day$season == 1,1,0)
   day$summer <- ifelse(day$season == 2,1,0)
   day$fall <- ifelse(day$season == 3,1,0)
   day$raining <- ifelse(day$weathersit == 3 | day$weathersit == 4,1,0)
-  
-  nr <- nrow(day)
   
   #training and validation are indexes into our data
   training <- sample(1:nr, ceiling(2*nr/3), replace=FALSE)
@@ -120,16 +117,17 @@ PartEF <- function()
   return(diff)
 } # PartEandF()
 
-
 library(freqparcoord)
-
 partG <- function(k){
-  #We know all the parameters for this specific dunction, so We won't pass them in (or require some of the if)
-
+  # We know all the parameters for this specific function,
+  # so we won't pass them in (or require some of the if)
+  
   # read in the data
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
-
+  
+  # omit attributes that we deem unnecessary
   day <- day[c(3:13, 16)]
+  nr <- nrow(day)
   
   print(names(day))
   
@@ -139,33 +137,28 @@ partG <- function(k){
   tmp <- day$temp
   season <- day$season
 
-  
+  # create plot of temperature
   p1 <- ggplot(data.frame(tmp,cnt))
   p1 <- p1 + geom_smooth(aes(x=tmp,y=cnt))
   print(p1)
   
+  # create plot of season
   p2 <- ggplot(data.frame(season,cnt))
   p2<- p2 + geom_smooth(aes(x=season,y=cnt))
   print(p2)
   
-  
-  #modelling on training set and testing with prediction set
-  
-  nr <- nrow(day)
-  
-  #training and validation are indexes into our data
+  # training and validation are indexes into our data
   training <- sample(1:nr, ceiling(2*nr/3), replace=FALSE)
   validation <- setdiff(1:nr, training)
-  
+
+  #modelling on training set and testing with prediction set
   model <- smoothz(day[training,], knnreg, 10)
   prediction <- smoothzpred(day[validation,], day[training,], model)
-  
-  difference <- day[validation,12] - prediction
-  
+
   # calculate differences between prediction and actual 
+  difference <- day[validation,12] - prediction
   diff <- c(mean(abs(difference)), min(abs(difference)), max(abs(difference)))
   names(diff) <- c("mean", "min", "max")
   return(diff)  
-  
 } # PartG
 
