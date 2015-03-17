@@ -120,3 +120,52 @@ PartEF <- function()
   return(diff)
 } # PartEandF()
 
+
+library(freqparcoord)
+
+partG <- function(k){
+  #We know all the parameters for this specific dunction, so We won't pass them in (or require some of the if)
+
+  # read in the data
+  day <- read.csv(file="day.csv",header=TRUE,sep=",")
+
+  day <- day[c(3:13, 16)]
+  
+  print(names(day))
+  
+  #Modelling on all data, printing plots of the model
+  cnt <- smoothz(day, knnreg, 10)
+  
+  tmp <- day$temp
+  season <- day$season
+
+  
+  p1 <- ggplot(data.frame(tmp,cnt))
+  p1 <- p1 + geom_smooth(aes(x=tmp,y=cnt))
+  print(p1)
+  
+  p2 <- ggplot(data.frame(season,cnt))
+  p2<- p2 + geom_smooth(aes(x=season,y=cnt))
+  print(p2)
+  
+  
+  #modelling on training set and testing with prediction set
+  
+  nr <- nrow(day)
+  
+  #training and validation are indexes into our data
+  training <- sample(1:nr, ceiling(2*nr/3), replace=FALSE)
+  validation <- setdiff(1:nr, training)
+  
+  model <- smoothz(day[training,], knnreg, 10)
+  prediction <- smoothzpred(day[validation,], day[training,], model)
+  
+  difference <- day[validation,12] - prediction
+  
+  # calculate differences between prediction and actual 
+  diff <- c(mean(abs(difference)), min(abs(difference)), max(abs(difference)))
+  names(diff) <- c("mean", "min", "max")
+  return(diff)  
+  
+} # PartG
+
