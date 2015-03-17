@@ -123,9 +123,8 @@ PartEF <- function()
 
 library(freqparcoord)
 
-partG <- function(k){
-  #We know all the parameters for this specific dunction, so We won't pass them in (or require some of the if)
-
+PartG <- function(k){
+  
   # read in the data
   day <- read.csv(file="day.csv",header=TRUE,sep=",")
 
@@ -134,7 +133,7 @@ partG <- function(k){
   print(names(day))
   
   #Modelling on all data, printing plots of the model
-  cnt <- smoothz(day, knnreg, 10)
+  cnt <- smoothz(day, knnreg, k)
   
   tmp <- day$temp
   season <- day$season
@@ -157,7 +156,7 @@ partG <- function(k){
   training <- sample(1:nr, ceiling(2*nr/3), replace=FALSE)
   validation <- setdiff(1:nr, training)
   
-  model <- smoothz(day[training,], knnreg, 10)
+  model <- smoothz(day[training,], knnreg, k)
   prediction <- smoothzpred(day[validation,], day[training,], model)
   
   difference <- day[validation,12] - prediction
@@ -165,7 +164,25 @@ partG <- function(k){
   # calculate differences between prediction and actual 
   diff <- c(mean(abs(difference)), min(abs(difference)), max(abs(difference)))
   names(diff) <- c("mean", "min", "max")
-  return(diff)  
+  print(diff)  
+  
+  print("Now modelling on select data only only select data, based on our final model")
+  
+  
+  attrs <- c(1:2,7:8,10:11)
+  day2 <- day[c(attrs, 12)]
+  print(names(day2))
+  
+  model <- smoothz(day2[training,], knnreg, k)
+  prediction <- smoothzpred(day2[validation,], day2[training,], model)
+  
+  difference <- day2[validation,6] - prediction
+  
+  # calculate differences between prediction and actual 
+  diff2 <- c(mean(abs(difference)), min(abs(difference)), max(abs(difference)))
+  names(diff2) <- c("mean", "min", "max")
+  print(diff2)  
+  
   
 } # PartG
 
