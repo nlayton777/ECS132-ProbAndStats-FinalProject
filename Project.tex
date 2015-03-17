@@ -104,15 +104,14 @@ These two confidence intervals show that there could be a relationship between t
 \label{sec:problem2}
 \subsection{Part A}
 \label{subsec:2a}
-In this part we realized that casual, registered and dtedate were not necessary to include as predictors.
+In this part we realized that the "casual", "registered" and "dtedate" attributes were not necessary to include as predictors. All other attributes were included in our linear model. The output of the "summary" function for this model can be seen in Appendix~\ref{subsec:problem2aoutput}, and the code for this part can be seen in Appendix~\ref{sec:problem2code}.
 \subsection{Part B}
 \label{subsec:2b}
 Please see Appendix~\ref{sec:problem2code} for the code from Part B. Part C and D will explore the output of this code in detail.   
 \subsection{Part C}
 \label{subsec:2c}
 
-When we fit a linear model on our training data set, the output returned is our sample estimate (estimate based on our sample data). The output that was returned is included in the Appendix~\ref{sec:problem2coutput}.
-\\
+When we fit a linear model on our training data set, the output returned is our sample estimate (estimate based on our sample data). The output that was returned can be found in Appendix~\ref{subsec:problem2coutput}.
 
 The first coefficient returned is the intercept value, which we can call $\beta_{0}$. The estimates for our next 11 coefficients returned are our predictors, which we can call  $\beta_{i}$, where i is a number 1 through 11. These values can help us estimate average bike ridership from our sample data. The linear model of our estimated regression would be:
 \begin{equation}
@@ -128,7 +127,7 @@ To get an idea of how accurate our estimate is, we can use the standard error of
 
 \subsection{Part D}
 \label{subsec:2d}
-We have added two interaction terms and one quadratic term to the linear model. Our output can be viewed in Appendix~\ref{sec:problem2doutput}. The interaction terms are temp and workingday. We multiplied temp and workingday with the -1127.08 result from the linear model to demonstrate that with higher temperatures on a workingday, the number of bike rentals decreases. The other interaction terms are  mnth and weathersit. We multiplied mnth and weathersit to indicate later months coupled with poor weather leads to a decreased number of bike rentals. Our quadratic term tempsquared is used to emphasize the fact that as the temperature increases, there are less bike rentals.  
+We have added two interaction terms and one quadratic term to the linear model. Our output can be viewed in Appendix~\ref{subsec:problem2doutput}. The interaction terms are temp and workingday. We multiplied temp and workingday with the -1127.08 result from the linear model to demonstrate that with higher temperatures on a workingday, the number of bike rentals decreases. The other interaction terms are  mnth and weathersit. We multiplied mnth and weathersit to indicate later months coupled with poor weather leads to a decreased number of bike rentals. Our quadratic term tempsquared is used to emphasize the fact that as the temperature increases, there are less bike rentals.  
 Compared to part C, our R-squared value is now 81.73\% which demonstrates that this model is a more accurate representation of our sample estimate. 
 \subsection{Part E}
 \label{subsec:2e}
@@ -136,7 +135,7 @@ Our final model included the following attributes: year (yr), temp, humidity (hu
 
 \subsection{Part F}
 \label{subsec:2f}
-The output that R returned to us is in Appendix~\ref{sec:problem2efoutput}. The first indication that this model is more accurate than our previous models is that our R-square value is now approximately 0.8436. This shows that we can accurately predict 84.36\% of biker ridership for our sample. We also print out the mean, min and max of the difference between value that was predicted by the regression and the actual value of the validation set. The average difference between our prediction and validation data was approximately 573.579. We ran our model multiple times with different attributes to gage whether this difference in mean would increase or decrease, and found this average difference to be among the lower values. 
+The output that R returned to us is in Appendix~\ref{subsec:problem2efoutput}. The first indication that this model is more accurate than our previous models is that our R-square value is now approximately 0.8436. This shows that we can accurately predict 84.36\% of biker ridership for our sample. We also print out the mean, min and max of the difference between value that was predicted by the regression and the actual value of the validation set. The average difference between our prediction and validation data was approximately 573.579. We ran our model multiple times with different attributes to gage whether this difference in mean would increase or decrease, and found this average difference to be among the lower values. 
 \subsection{Part G}
 \label{subsec:2g}
 \subsection{Part H}
@@ -148,7 +147,7 @@ The output that R returned to us is in Appendix~\ref{sec:problem2efoutput}. The 
 \label{sec:problem3}
 \subsection{Part A: Nonparametric Density Estimation}
 \label{subsec:3a}
-
+A plot of the nonparametric density estimation can be viewed in the form of a histogram in Appendix~\ref{sec:problem3aplot}.
 
 \subsection{Part B: Fitting a Parametric Model}
 \label{subsec:3b}
@@ -213,17 +212,21 @@ We plotted our two parametric model curves on top of the nonparametric density e
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem 2 Output}
 \label{sec:problem2output}
+\subsection{Part A}
+\label{subsec:problem2aoutput}
+\includegraphics[totalheight=0.65\textheight]{Part2Aoutput}
 \subsection{Part C}
+\label{subsec:problem2coutput}
 \includegraphics[totalheight=0.65\textheight]{Output.jpg}
-\label{sec:problem2coutput}
 \subsection{Part D}
+\label{subsec:problem2doutput}
 \includegraphics[totalheight=0.65\textheight]{Part2Doutput.jpg}
-\label{sec:problem2doutput}
 \pagebreak
 \subsection{Part E and F}
-\includegraphics{Output2PartEF.jpg}
-\label{sec:problem2efoutput}
+\label{subsec:problem2efoutput}
+\includegraphics[totalheight=0.65\textheight]{Output2PartEF.jpg}
 \pagebreak
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem 3 Code}
 \label{sec:problem3code}
