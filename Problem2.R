@@ -133,16 +133,25 @@ PartG <- function(k){
   
   tmp <- day$temp
   season <- day$season
+  weather <- day$weathersit
 
   # create plot of temperature
   p1 <- ggplot(data.frame(tmp,cnt))
   p1 <- p1 + geom_smooth(aes(x=tmp,y=cnt))
   print(p1)
+  ggsave("Problem2G-Temp.pdf",width=5,height=7,plot=last_plot())
   
   # create plot of season
   p2 <- ggplot(data.frame(season,cnt))
   p2<- p2 + geom_smooth(aes(x=season,y=cnt))
   print(p2)
+  ggsave("Problem2G-Season.pdf",width=5,height=7,plot=last_plot())
+  
+  p3 <- ggplot(data.frame(weather,cnt))
+  p3<- p3 + geom_smooth(aes(x=weather,y=cnt))
+  print(p3)
+  ggsave("Problem2G-Weather.pdf",width=5,height=7,plot=last_plot())
+  
   
   # training and validation are indexes into our data
   training <- sample(1:nr, ceiling(2*nr/3), replace=FALSE)
