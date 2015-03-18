@@ -90,7 +90,7 @@ The random variables $\hat{p_1}$ and $\hat{p_2}$ are independent of one another.
 \begin{equation}
 = \hat{p_1} - \hat{p_2} \pm (1.96) \sqrt{\frac{\hat{p_1}(1 - \hat{p_1})}{n_1}+\frac{\hat{p_1}(1 - \hat{p_1})}{n_2}}
 \end{equation}
-\dots where $n_1$ and $n_2$ are the number of days in March 2011 and March 2012 (respectfull) during which the temperature was warm. We defined a "warmer day" to be one in which the temperature rose above 12.5 degrees Celsius, which translated to be 0.3 in the UCI dataset. The R code that was developed to evaluate the above expression can be found in Appendix~\ref{sec:problem1code}.
+\dots where $n_1$ and $n_2$ are the number of days in March 2011 and March 2012 (respectful) during which the temperature was warm. We defined a "warmer day" to be one in which the temperature rose above 12.5 degrees Celsius, which translated to be 0.3 in the UCI dataset. The R code that was developed to evaluate the above expression can be found in Appendix~\ref{sec:problem1code}.
 
 In our calculation we found that the proportion of warmer days in March 2011 was 0.5806452 and that the proportion of warmer days in March 2012 was 0.9032258. The difference between the proportions of our two samples was found to be 0.3225833. The standard deviation of the proportion of warmer days in March 2011 was 0.4934535, and the standard deviation of the proportion of warmer days in March 2012 was 0.2956500. The resulting confidence interval was $(-0.5250816, -0.1200797)$. We can say that we are 95\% confident that the difference between the population proportions for warmer days in the months of March 2011 and March 2012 lies within the interval ranging from $-0.5250816$ to  $-0.1200797$.
 
@@ -104,8 +104,7 @@ These two confidence intervals show that there could be a relationship between t
 \label{sec:problem2}
 \subsection{Part A}
 \label{subsec:2a}
-In this part we realized that the casual, registered and dtedate attributes could not be included in our set of predictor variables. This is because casual and registered were both types of ridership, which meant that they were subsets of the data for the response variable cnt, which is the number of rentals of bikes for that particular day. The attribute dteday wasn't even a numerical data type, and therefore could not be included. All other attributes were included in our linear model. The output of the "summary()" function for this model can be seen in Appendix~\ref{subsec:problem2aoutput}, and the code for this part can be seen in Appendix~\ref{sec:problem2code}.
-
+In this part we realized that the casual, registered and dteday attributes could not be included in our set of predictor variables. This is because casual and registered were both types of ridership, which meant that they were subsets of the data for the response variable cnt, which is the number of rentals of bikes for that particular day. The attribute dteday wasn't even a numerical data type, and therefore could not be included. All other attributes were included in our linear model. The output of the "summary()" function for this model can be seen in Appendix~\ref{subsec:problem2aoutput}, and the code for this part can be seen in Appendix~\ref{sec:problem2code}.
 \subsection{Part B}
 \label{subsec:2b}
 For this part, we formed a model from the training data, and used R's "predict()" function to form a vector of predictions from our validation data. We then calculated the difference between the actual values of the validation set and the predicted values. We then calculated the mean, the minimum value, and the maximum value of the set of differences to get an idea for how close our model was to predicting the actual value of the validation data. Please see Appendix~\ref{sec:problem2code} for the code from Part B. Part C and D will explore the output of this code in detail.   
@@ -140,9 +139,16 @@ Our final model included the following attributes: year (yr), temp, humidity (hu
 
 \subsection{Part G}
 \label{subsec:2g}
+To take a non parametric analysis we used the smoothz and smoothzpred functions of the freqparcoord library. The first thing we did was remove the data from the bikeridership dataset that would not work with our model. These are the response variables casual and registered as well as the record index and date. We then modelled the entire dataset using smoothz and graphed the relationship between count and Season, Weather, and Temperature. These were the attributes that we changed our model for in Part E. These graphs, in Appendix~\ref{subsec:problem2gplotsSeason}, ~\ref{subsec:problem2gplotsTemp}, and ~\ref{subsec:problem2gplotsWeather} show the parabolic relationship we predicted in temperature, as well as distinct levels for each weather category and season.
+
+After looking at the model visually we broke the dataset into training and validation sets. We created a model from the training set using smoothz and tested it on the validation set using smoothzpred. We looked at the mean difference between this predicted data and the actual count values for the validation data. This difference, the first mean value in Appendix~\ref{subsec:problem2goutput}, is 683.83. This is worse than the parametric model, but better than some of our attempts to reach that final model.
+
+Finally we removed some of the attributes from the data set to match our final prediction from part E. This with the training and validation sets as we did for the full data set. This limited data set provided much worse results than the original data. This out put, the second mean in Appendix~\ref{subsec:problem2goutput} is 4646.3, which is far worse than our model using all of the available data. Even the minimum difference is worse than the mean difference where we used all of the data. This shows that the non parametric model benefits from having all the available data, not a limited selection.
 
 \subsection{Part H}
 \label{subsec:2h}
+Once we represented our data with parametric and non-parametric models, we analyzed which one was a better fit for the data. In Part A through F, we finalized our parametric model to the best fit for our data. In Part G, we used a smoothz and smoothzpred function to create a non-parametric model for our data. The main difference between the two models is that the parametric model predicted average bike ridership by taking multiple attributes into account while the non-parametric model predicted average bike ridership based on only one parameter. Non-parametric models are useful when you have a small set of data to predict from. However, in the case of this project, we worked with a large set of data. In today's day and age, we have higher computing power, which allows us have a higher predictive power by fitting our data with parametric models. For this sample, the parametric model is useful because bike ridership was dependent on many varying conditions. For example, time of year, temperature, and weather condition all had an impact on the average count of bike ridership. The non-parametric model, on the other hand, only shows the frequency of bike ridership against one attribute. For example, we can only compare  temperature to the frequency of bike ridership. This can cause the prediction to be slightly skewed because the actual bike ridership of our sample is dependent on many other factors. Therefore, the predictive power through parametric models is higher than that of non-parametric models to predict average bike ridership for our sample.
+
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -230,7 +236,22 @@ We plotted our two parametric model curves on top of the nonparametric density e
 \label{subsec:problem2efoutput}
 \includegraphics[totalheight=0.65\textheight]{Output2PartEF.jpg}
 \pagebreak
-
+\subsection{Part G}
+\label{subsec:problem2goutput}
+\includegraphics[width=\textwidth]{OutputPartG.jpg}
+\pagebreak
+\subsection{Part G Season Plot}
+\label{subsec:problem2gplotsSeason}
+\includegraphics{Problem2G-Season.pdf}
+\pagebreak
+\subsection{Part G Temperature Plot}
+\label{subsec:problem2gplotsTemp}
+\includegraphics{Problem2G-Temp.pdf}
+\pagebreak
+\subsection{Part G Weather Plot}
+\label{subsec:problem2gplotsWeather}
+\includegraphics{Problem2G-Weather.pdf}
+\pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem 3 Code}
 \label{sec:problem3code}
@@ -280,7 +301,21 @@ The plot below is the parametric estimate of our data set for daily temperatures
 	
 	\item Rupali Saiya:
 	\begin{itemize}
-		\item 
+	\item Contributed to write up for parts:
+	\begin{itemize}
+		\item Problem 1: Part A
+		\item Problem 2: Part C, Part E, Part F, and Part H
+		\item Problem 3: Part B (Method of Maximum Likelihood) and Part C
+
+	\end{itemize}
+		
+	\item Helped brainstorm and conceptualize for parts:
+	\begin{itemize}
+		\item Problem 1: Part B
+		\item Problem 2: Part C and Part H
+		\item Problem 3: Part B
+	\end{itemize}
+	
 	\end{itemize}
 	
 	\item Nicholas Layton:
@@ -288,12 +323,21 @@ The plot below is the parametric estimate of our data set for daily temperatures
 		\item 
 	\end{itemize}
 	
-	\item Syeda Inamdar:
+\item Syeda Inamdar:
+\begin{itemize}
+	\item Contributed to write up for parts:
 	\begin{itemize}
-		\item 
+		\item Problem 2: Part D, H
+	\end{itemize}
+	
+	\item Helped brainstorm and conceptualize for parts:
+	\begin{itemize}
+		\item Problem 1 : Part B
+		\item Problem 2 : Part D, Part E, Part F,  Part H 
 	\end{itemize}
 \end{itemize}
+	
 \pagebreak
-
+\end{itemize}
 \end{document}
 
