@@ -130,6 +130,7 @@ We have added two interaction terms and one quadratic term to the linear model. 
 Compared to part C, our R-squared value is now 81.73\% which demonstrates that this model is a more accurate representation of our sample estimate. 
 \subsection{Part E}
 \label{subsec:2e}
+
 Our final model included the following attributes: year (yr), temp, humidity (hum), windspeed,tempsquared, spring, summer, fall, raining. Tempsquared is the temp values squared. We chose to do this so that we could place more emphasis on the days that had warmer weather because that seems to be a very large contributing factor to bike ridership. In addition, we decided to break the seasons into spring, summer, and fall because the boolean values for season were being incorporated into the original model. For example, fall was flagged as a 3. In  the original model, that 3 would be carried into the calculations. By adding these new attributes, we can now make spring, summer, and fall a boolean 1 or 0 so the calculations are not skewed. Although we are only tracking spring, summer, and fall values, we can assume if the value is not one of the three it is winter. Therefore, we can use these values to compare against winter. Lastly, the raining attribute compares weather situations 1 and 2 against 3 and 4 (clear and misty vs. light and heavy rain). We chose to exclude the workingday, weekend, weekday, and holiday attributes because we saw these items did not impact bike ridership.
 
 \subsection{Part F}
@@ -137,6 +138,13 @@ Our final model included the following attributes: year (yr), temp, humidity (hu
 The output that R returned to us is in Appendix~\ref{subsec:problem2efoutput}. The first indication that this model is more accurate than our previous models is that our R-square value is now approximately 0.8436. This shows that we can accurately predict 84.36\% of biker ridership for our sample. We also print out the mean, min and max of the difference between value that was predicted by the regression and the actual value of the validation set. The average difference between our prediction and validation data was approximately 573.579. We ran our model multiple times with different attributes to gage whether this difference in mean would increase or decrease, and found this average difference to be among the lower values. 
 \subsection{Part G}
 \label{subsec:2g}
+To take a non parametric analysis we used the smoothz and smoothzpred functions of the freqparcoord library. The first thing we did was remove the data from the bikeridership dataset that would not work with our model. These are the response variables casual and registered as well as the record index and date. We then modelled the entire dataset using smoothz and graphed the relationship between count and Season, Weather, and Temperature. These were the attributes that we changed our model for in Part E. These graphs, in Appendix~\ref{subsec:problem2gplots} show the parabolic relationship we predicted in temerature, as well as distinct levels for each weather category and season.
+
+After looking at the model visually we broke the dataset into trainging and validation sets. We created a model from the training set using smoothz and tested it on the validation set using smoothzpred. We looked at the mean difference between this predicted data and the actual count values for the validation data.
+
+Finally we removed some of the attributes from the data set to match our final prediction from part E. This with the training and validation sets as we did for the full data set. This limited data set provided much worse results than the original data.
+
+
 \subsection{Part H}
 \label{subsec:2h}
 Once we represented our data with parametric and non-parametric models, we analyzed which one was a better fit for the data. In Part A through F, we finalized our parametric model to the best fit for our data. In Part G, we used a smoothz and smoothzpred function to create a non-parametric model for our data. The main difference between the two models is that the parametric model predicted average bike ridership by taking multiple attributes into account while the non-parametric model predicted average bike ridership based on only one parameter. Non-parametric models are useful when you have a small set of data to predict from. However, in the case of this project, we worked with a large set of data. In today's day and age, we have higher computing power, which allows us have a higher predictive power by fitting our data with parametric models. For this sample, the parametric model is useful because bike ridership was dependent on many varying conditions. For example, time of year, temperature, and weather condition all had an impact on the average count of bike ridership. The non-parametric model, on the other hand, only shows the frequency of bike ridership against one attribute. For example, we can only compare  temperature to the frequency of bike ridership. This can cause the prediction to be slightly skewed because the actual bike ridership of our sample is dependent on many other factors. Therefore, the predictive power through parametric models is higher than that of non-parametric models to predict average bike ridership for our sample.
@@ -227,7 +235,18 @@ We plotted our two parametric model curves on top of the nonparametric density e
 \label{subsec:problem2efoutput}
 \includegraphics[totalheight=0.65\textheight]{Output2PartEF.jpg}
 \pagebreak
-
+\subsection{Part G Season Plot}
+\label{subsec:problem2gplotsSeason}
+\includegraphics{Problem2G-Season.pdf}
+\pagebreak
+\subsection{Part G Temperature Plot}
+\label{subsec:problem2gplotsTemp}
+\includegraphics{Problem2G-Temp.pdf}
+\pagebreak
+\subsection{Part G Weather Plot}
+\label{subsec:problem2gplotsWeather}
+\includegraphics{Problem2G-Weather.pdf}
+\pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem 3 Code}
 \label{sec:problem3code}
