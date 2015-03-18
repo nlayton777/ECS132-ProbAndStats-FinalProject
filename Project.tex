@@ -90,7 +90,7 @@ The random variables $\hat{p_1}$ and $\hat{p_2}$ are independent of one another.
 \begin{equation}
 = \hat{p_1} - \hat{p_2} \pm (1.96) \sqrt{\frac{\hat{p_1}(1 - \hat{p_1})}{n_1}+\frac{\hat{p_1}(1 - \hat{p_1})}{n_2}}
 \end{equation}
-\dots where $n_1$ and $n_2$ are the number of days in March 2011 and March 2012 (respectfull) during which the temperature was warm. We defined a "warmer day" to be one in which the temperature rose above 12.5 degrees Celsius, which translated to be 0.3 in the UCI dataset. The R code that was developed to evaluate the above expression can be found in Appendix~\ref{sec:problem1code}.
+\dots where $n_1$ and $n_2$ are the number of days in March 2011 and March 2012 (respectful) during which the temperature was warm. We defined a "warmer day" to be one in which the temperature rose above 12.5 degrees Celsius, which translated to be 0.3 in the UCI dataset. The R code that was developed to evaluate the above expression can be found in Appendix~\ref{sec:problem1code}.
 
 In our calculation we found that the proportion of warmer days in March 2011 was 0.5806452 and that the proportion of warmer days in March 2012 was 0.9032258. The difference between the proportions of our two samples was found to be 0.3225833. The standard deviation of the proportion of warmer days in March 2011 was 0.4934535, and the standard deviation of the proportion of warmer days in March 2012 was 0.2956500. The resulting confidence interval was $(-0.5250816, -0.1200797)$. We can say that we are 95\% confident that the difference between the population proportions for warmer days in the months of March 2011 and March 2012 lies within the interval ranging from $-0.5250816$ to  $-0.1200797$.
 
@@ -104,7 +104,7 @@ These two confidence intervals show that there could be a relationship between t
 \label{sec:problem2}
 \subsection{Part A}
 \label{subsec:2a}
-In this part we realized that the casual, registered and dtedate attributes could not be included in our set of predictor variables. This is because casual and registered were both types of ridership, which meant that they were subsets of the data for the response variable cnt, which is the number of rentals of bikes for that particular day. The attribute dteday wasn't even a numerical data type, and therefore could not be included. All other attributes were included in our linear model. The output of the "summary()" function for this model can be seen in Appendix~\ref{subsec:problem2aoutput}, and the code for this part can be seen in Appendix~\ref{sec:problem2code}.
+In this part we realized that the casual, registered and dteday attributes could not be included in our set of predictor variables. This is because casual and registered were both types of ridership, which meant that they were subsets of the data for the response variable cnt, which is the number of rentals of bikes for that particular day. The attribute dteday wasn't even a numerical data type, and therefore could not be included. All other attributes were included in our linear model. The output of the "summary()" function for this model can be seen in Appendix~\ref{subsec:problem2aoutput}, and the code for this part can be seen in Appendix~\ref{sec:problem2code}.
 \subsection{Part B}
 \label{subsec:2b}
 For this part, we formed a model from the training data, and used R's "predict()" function to form a vector of predictions from our validation data. We then calculated the difference between the actual values of the validation set and the predicted values. We then calculated the mean, the minimum value, and the maximum value of the set of differences to get an idea for how close our model was to predicting the actual value of the validation data. Please see Appendix~\ref{sec:problem2code} for the code from Part B. Part C and D will explore the output of this code in detail.   
@@ -300,7 +300,21 @@ The plot below is the parametric estimate of our data set for daily temperatures
 	
 	\item Rupali Saiya:
 	\begin{itemize}
-	\item
+	\item Contributed to write up for parts:
+	\begin{itemize}
+		\item Problem 1: Part A
+		\item Problem 2: Part C, Part E, Part F, and Part H
+		\item Problem 3: Part B (Method of Maximum Likelihood) and Part C
+
+	\end{itemize}
+		
+	\item Helped brainstorm and conceptualize for parts:
+	\begin{itemize}
+		\item Problem 1: Part B
+		\item Problem 2: Part C and Part H
+		\item Problem 3: Part B
+	\end{itemize}
+	
 	\end{itemize}
 	
 	\item Nicholas Layton:
@@ -308,12 +322,21 @@ The plot below is the parametric estimate of our data set for daily temperatures
 		\item 
 	\end{itemize}
 	
-	\item Syeda Inamdar:
+\item Syeda Inamdar:
+\begin{itemize}
+	\item Contributed to write up for parts:
 	\begin{itemize}
-		\item 
+		\item Problem 2: Part D, H
+	\end{itemize}
+	
+	\item Helped brainstorm and conceptualize for parts:
+	\begin{itemize}
+		\item Problem 1 : Part B
+		\item Problem 2 : Part D, Part E, Part F,  Part H 
 	\end{itemize}
 \end{itemize}
+	
 \pagebreak
-
+\end{itemize}
 \end{document}
 
