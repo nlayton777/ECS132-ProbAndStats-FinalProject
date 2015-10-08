@@ -1,3 +1,5 @@
+# testing git rebase functionality
+
 PartA <- function()
 {
   # import daily data
